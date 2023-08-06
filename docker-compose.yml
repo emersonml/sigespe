@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.1-apache
+    container_name: sigespe_app
+    hostname: sigespe
+    ports:
+     - 8003:80
+    #expose:
+     # - "8003"
+    #  - '3306'
+    volumes:
+      - ./src:/var/www/html
+
+    networks:
+      net_sigespe:
+        ipv4_address: 10.0.2.2
+
+
+networks:
+  net_sigespe:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.2.0/24
+
